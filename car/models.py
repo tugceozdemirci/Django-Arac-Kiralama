@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+from django.utils.safestring import mark_safe
+
 
 class Category(models.Model) :
     STATUS = {
@@ -20,7 +22,9 @@ class Category(models.Model) :
     def __str__(self):
         return self.title
 
-
+    def image_tag(self):
+        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+    image_tag.short_description = 'Image'
 
 class Car(models.Model):
     STATUS = {
@@ -50,6 +54,9 @@ class Car(models.Model):
     def __str__(self):
         return self.title
 
+    def image_tag(self):
+        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+    image_tag.short_description = 'Image'
 
 class Images(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
@@ -58,5 +65,11 @@ class Images(models.Model):
 
     def __str__(self):
         return self.title
+
+    def image_tag(self):
+        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+    image_tag.short_description = 'Image'
+
+
 
 
