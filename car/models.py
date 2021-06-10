@@ -1,7 +1,6 @@
 from django.db import models
-
-# Create your models here.
 from django.utils.safestring import mark_safe
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Category(models.Model) :
@@ -26,6 +25,7 @@ class Category(models.Model) :
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
 
+
 class Car(models.Model):
     STATUS = {
         ('True', 'Evet'),
@@ -45,7 +45,7 @@ class Car(models.Model):
     color = models.CharField(max_length=20)
     seats = models.IntegerField()
     luggage = models.CharField(max_length=10)
-    detail = models.TextField()
+    detail = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS)
     slug = models.SlugField(blank=True, max_length=150)
     create_at = models.DateTimeField(auto_now_add=True)
