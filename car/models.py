@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
-from ckeditor_uploader.fields import RichTextUploadingField
+
 
 
 class Category(models.Model) :
@@ -45,7 +45,7 @@ class Car(models.Model):
     color = models.CharField(max_length=20)
     seats = models.IntegerField()
     luggage = models.CharField(max_length=10)
-    detail = RichTextUploadingField()
+    detail = models.CharField(max_length=260)
     status = models.CharField(max_length=10, choices=STATUS)
     slug = models.SlugField(blank=True, max_length=150)
     create_at = models.DateTimeField(auto_now_add=True)

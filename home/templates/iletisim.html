@@ -1,0 +1,29 @@
+{% extends "homebase.html" %}
+
+{% block title %}{{setting.title }}{% endblock %}
+{% block keywords %}{{setting.keywords }}{% endblock %}
+{% block description %}{{setting.description }}{% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+{% block header %}{% include "header.html" %}{% endblock %}
+
+{% block content %}
+        <!-- About Details Start -->
+        <div class="about-details section-padding30">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-1 col-lg-8">
+                        <div class="about-details-cap mb-50">
+                            <h4>İletişim</h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About Details End -->
+{% endblock %}
+
+
