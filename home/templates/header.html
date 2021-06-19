@@ -26,7 +26,16 @@
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="/">Anasayfa</a></li>
-                                    <li><a href="">Araçlarımız</a>{% block sidebar %}{% include "sidebar.html" %}{% endblock %}</li>
+                                    <li><a href="">Araçlarımız</a>
+                                        {% load mptt_tags %}
+                                        <ul class="submenu">
+                                            {% recursetree category %}
+                                                <li>
+                                                <a href="/category/{{ node.id }}/{{ node.slug }}">{{ node.title }}</a>
+                                            {% endrecursetree %}
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li><a href="/hakkimizda">Hakkımızda</a></li>
                                     <li><a href="/iletisim">İletişim</a></li>
                                     <li><a href="/referanslar">Referanslar</a></li>
