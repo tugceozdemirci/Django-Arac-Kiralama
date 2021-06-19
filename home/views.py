@@ -3,30 +3,35 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from car.models import Car
+from car.models import Car, Category
 from home.models import Setting, ContactFormu, ContactFormMessage
 
 
 def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Car.objects.all()[:2]
+    category = Category.objects.all()
     context = {'setting': setting,
+               'category': category,
                'page': 'home',
                'sliderdata': sliderdata }
     return render(request, 'index.html', context)
+
 
 def hakkimizda(request):
     setting = Setting.objects.get(pk=1)
     context = {'setting': setting , 'page':'hakkimizda'}
     return render(request, 'hakkimizda.html', context)
 
+
 def referanslar(request):
     setting = Setting.objects.get(pk=1)
     context = {'setting': setting , 'page':'referanslar'}
     return render(request, 'referanslarimiz.html', context)
 
-def iletisim(request):
 
+
+def iletisim(request):
     if request.method == 'POST':
         form = ContactFormu(request.POST)
         if form.is_valid():
