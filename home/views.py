@@ -11,24 +11,37 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Car.objects.all()[:2]
     category = Category.objects.all()
+    daycars = Car.objects.all()[:3]
+    lastcars = Car.objects.all().order_by('-id')[:3]
+    randomcars = Car.objects.all().order_by('?')[:3]
     context = {'setting': setting,
                'category': category,
                'page': 'home',
-               'sliderdata': sliderdata }
+               'sliderdata': sliderdata,
+               'daycars': daycars,
+               'lastcars': lastcars,
+               'randomcars': randomcars,
+               }
     return render(request, 'index.html', context)
 
 
 def hakkimizda(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting , 'category': category, 'page':'hakkimizda',}
+    context = {'setting': setting ,
+               'category': category,
+               'page':'hakkimizda',
+               }
     return render(request, 'hakkimizda.html', context)
 
 
 def referanslar(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting , 'category': category, 'page':'referanslar'}
+    context = {'setting': setting ,
+               'category': category,
+               'page':'referanslar'
+               }
     return render(request, 'referanslarimiz.html', context)
 
 
@@ -51,7 +64,7 @@ def iletisim(request):
     category = Category.objects.all()
     form = ContactFormu()
     context = {'setting': setting,
-               'form':form,
+               'form': form,
                'category': category,
                }
     return render(request,'iletisim.html',context)
