@@ -31,6 +31,7 @@ urlpatterns = [
     path('referanslar/', views.referanslar, name='referanslar'),
     path('iletisim/', views.iletisim, name='iletisim'),
     path('category/<int:id>/<slug:slug>/', views.category_cars, name="category_cars"),
+    path('car/<int:id>/<slug:slug>/', views.car_detail, name='car_detail'),
 
 ]
 
