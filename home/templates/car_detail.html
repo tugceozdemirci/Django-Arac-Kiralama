@@ -1,0 +1,152 @@
+{% extends "homebase.html" %}
+
+{% block title %}{{car.title }}{% endblock %}
+{% block keywords %}{{car.keywords }}{% endblock %}
+{% block description %}{{car.description }}{% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+{% block header %}{% include "header.html" %}{% endblock %}
+
+{% block content %}
+        <!-- Hero Area Start-->
+        <div class="slider-area ">
+            <div class="single-slider slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/category/{{car.category_id }}/{{car.category.slug }}">{{car.category }}</a></li>
+                                <li class="breadcrumb-item active">{{car.title }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Area End-->
+        <!--================Single Product Area =================-->
+        <div class="product_image_area">
+            <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                <div class="product_img_slide owl-carousel">
+                    {% for rs in images%}
+                    <div class="single_product_img">
+                        <img src="{{ rs.image.url }}" alt="#" class="img-fluid">
+                    </div>
+                    <div class="single_product_img">
+                        <img src="{{ rs.image.url }}" alt="#" class="img-fluid">
+                    </div>
+                    <div class="single_product_img">
+                        <img src="{{ rs.image.url }}" alt="#" class="img-fluid">
+                    </div>
+                    {% endfor %}
+                </div>
+                </div>
+                <div class="section-top-border">
+					<div class="progress-table-wrap">
+						<div class="progress-table">
+							<div class="table-head">
+								<div class="serial">#</div>
+								<div class="country">Özellikler</div>
+								<div class="percentage"></div>
+							</div>
+							<div class="table-row">
+								<div class="serial">Model:</div>
+								<div class="country"> {{ car.year}} </div>
+								<div class="percentage">
+									<div class="progress">
+										<div class="progress-bar color-1" role="progressbar" style="width: 80%"
+											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+							</div>
+							<div class="table-row">
+								<div class="serial">Yakıt Türü:</div>
+								<div class="country"> {{ car.fuel}} </div>
+								<div class="percentage">
+									<div class="progress">
+										<div class="progress-bar color-2" role="progressbar" style="width: 30%"
+											aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+							</div>
+							<div class="table-row">
+								<div class="serial">Vites:</div>
+								<div class="country"> {{ car.vites}} </div>
+								<div class="percentage">
+									<div class="progress">
+										<div class="progress-bar color-4" role="progressbar" style="width: 60%"
+											aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+							</div>
+							<div class="table-row">
+								<div class="serial">Motor:</div>
+								<div class="country"> {{ car.engine}} hp </div>
+								<div class="percentage">
+									<div class="progress">
+										<div class="progress-bar color-5" role="progressbar" style="width: 40%"
+											aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+							</div>
+							<div class="table-row">
+								<div class="serial">Bagaj:</div>
+								<div class="country"> {{ car.luggage}} </div>
+								<div class="percentage">
+									<div class="progress">
+										<div class="progress-bar color-6" role="progressbar" style="width: 70%"
+											aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+							</div>
+							<div class="table-row">
+								<div class="serial">Koltuk:</div>
+								<div class="country"> {{ car.seats}} </div>
+								<div class="percentage">
+									<div class="progress">
+										<div class="progress-bar color-7" role="progressbar" style="width: 30%"
+											aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+							</div>
+							<div class="table-row">
+								<div class="serial">Renk:</div>
+								<div class="country"> {{ car.color}} </div>
+								<div class="percentage">
+									<div class="progress">
+										<div class="progress-bar color-8" role="progressbar" style="width: 60%"
+											aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="col-lg-8">
+                <div class="single_product_text text-center">
+                    <div class="card_area">
+                        <div class="product_count_area">
+                            <p>Kaç Günlüğüne Kirayacaksınız?</p>
+                            <div class="product_count d-inline-block">
+                                <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+                                <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
+                                <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                            </div>
+                            <p>₺ {{ car.price }}</p>
+                        </div>
+                    <div class="add_to_cart">
+                        <a href="#" class="btn_3">REZERVASYON YAP</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!--================End Single Product Area =================-->
+{% endblock %}
+
+
