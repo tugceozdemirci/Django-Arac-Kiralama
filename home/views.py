@@ -5,6 +5,7 @@ from django.shortcuts import render
 # Create your views here.
 from car.models import Car, Category, Images
 from home.models import Setting, ContactFormu, ContactFormMessage
+from home.templates.forms import SearchForm
 
 
 def index(request):
@@ -91,4 +92,22 @@ def car_detail(request, id, slug):
                'images': images,
                }
     return render(request, 'car_detail.html', context)
+
+
+def car_search(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            category = Category.objects.all()
+            query = form.cleaned_data['query']
+            car = Car.objects.filter(title__icontains=query)
+            context = {
+                'cars': car,
+                'category': category,
+            }
+            return render(request, 'car_search.html', context)
+
+    return HttpResponseRedirect('/')
+
+
 

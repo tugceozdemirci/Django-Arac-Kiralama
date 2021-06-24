@@ -46,8 +46,12 @@
                         <div class="header-right">
                             <ul>
                                 <li>
-                                    <div class="nav-search search-switch">
-                                        <span class="flaticon-search"></span>
+                                    <div class="nav-search">
+                                        <form action="/search/" method="post">
+                                            {% csrf_token %}
+                                            <input name="query" class="input search-input" type="text" placeholder="Rent Car' da Ara..." >
+                                            <button class="search-btn"> <i class="fa fa-search"></i> </button>
+                                        </form>
                                     </div>
                                 </li>
                                 <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
