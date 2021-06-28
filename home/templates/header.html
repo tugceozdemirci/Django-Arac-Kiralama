@@ -39,23 +39,39 @@
                                     <li><a href="/hakkimizda">Hakkımızda</a></li>
                                     <li><a href="/iletisim">İletişim</a></li>
                                     <li><a href="/referanslar">Referanslar</a></li>
+                                    <li>
+                                        <div class="nav-search header-right">
+                                            <form action="/search/" method="post">
+                                                {% csrf_token %}
+                                            <input name="query" class="input search-input" type="text" placeholder="Rent Car' da Ara..." >
+                                                <button class="search-btn"> <i class="fa fa-search"></i> </button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    {% if user.id is not None  %}
+                                        <span class="flaticon-user"><strong class="text-uppercase">{{user.first_name}}</strong></span>
+                                        <ul class="submenu">
+                                            <li><a href="#" style="color: black"><i class="fa fa-user-o"></i> Hesabım</a></li>
+                                            <li><a href="#" style="color: black"><i class="fa fa-exchange"></i> Rezervasyonlarım</a></li>
+                                            <li><a href="#" style="color: black"><i class="fa fa-commenting-o"></i> SSS</a></li>
+                                            <li><a href="/logout/" style="color: black"><i class="fa fa-unlock-alt"></i> Logout</a></li>
+                                        </ul>
+                                    {% else %}
+                                        <div class="row"><a href="/login/" style="color: black">Giriş Yap</a><a href="/join/" style="color: black">Üye ol</a></div>
+                                    {% endif %}
+                                </li>
                                 </ul>
                             </nav>
                         </div>
                         <!-- Header Right -->
-                        <div class="header-right">
+                        <div class="header-ri">
                             <ul>
-                                <li>
-                                    <div class="nav-search">
-                                        <form action="/search/" method="post">
-                                            {% csrf_token %}
-                                            <input name="query" class="input search-input" type="text" placeholder="Rent Car' da Ara..." >
-                                            <button class="search-btn"> <i class="fa fa-search"></i> </button>
-                                        </form>
-                                    </div>
-                                </li>
-                                <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
-                                <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
+                                <div class="row">
+                                    <div class="d-lg-table-row"></div>
+                                </div>
+
+                                <!-- <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li> -->
                             </ul>
                         </div>
                     </div>
