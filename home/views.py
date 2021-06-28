@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 from car.models import Car, Category, Images
 from home.models import Setting, ContactFormu, ContactFormMessage
-from home.forms import SearchForm
+from home.forms import SearchForm, SignUpForm
 
 
 def index(request):
@@ -30,9 +30,9 @@ def index(request):
 def hakkimizda(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting ,
+    context = {'setting': setting,
                'category': category,
-               'page':'hakkimizda',
+               'page': 'hakkimizda',
                }
     return render(request, 'hakkimizda.html', context)
 
@@ -40,9 +40,9 @@ def hakkimizda(request):
 def referanslar(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting ,
+    context = {'setting': setting,
                'category': category,
-               'page':'referanslar'
+               'page': 'referanslar'
                }
     return render(request, 'referanslarimiz.html', context)
 
@@ -51,14 +51,14 @@ def iletisim(request):
     if request.method == 'POST':
         form = ContactFormu(request.POST)
         if form.is_valid():
-            data= ContactFormMessage()
-            data.name= form.cleaned_data['name']
+            data = ContactFormMessage()
+            data.name = form.cleaned_data['name']
             data.email = form.cleaned_data['email']
             data.subject = form.cleaned_data['subject']
             data.message = form.cleaned_data['message']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
-            messages.success(request,"Mesajınız başarı ile gönderilmiştir.Teşekkür ederiz.")
+            messages.success(request, "Mesajınız başarı ile gönderilmiştir.Teşekkür ederiz.")
             return HttpResponseRedirect('/iletisim')
 
     setting = Setting.objects.get(pk=1)
@@ -68,7 +68,7 @@ def iletisim(request):
                'form': form,
                'category': category,
                }
-    return render(request,'iletisim.html',context)
+    return render(request, 'iletisim.html', context)
 
 
 def category_cars(request, id, slug):
@@ -135,6 +135,27 @@ def login_view(request):
     return render(request, 'login.html', context)
 
 
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = request.POST['username']
+            password = request.POST['password1']
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
 
+            current_user = request.user
+            data = UserProfile()
+            data.user_id = current_user.id
+            data.image = "images/users/user.png"
+            data.save()
+            messages.success(request, "Hoşgeldiniz...")
+            return HttpResponseRedirect('/')
 
-
+    form = SignUpForm()
+    category = Category.objects.all()
+    context = {'category': category,
+               'form': form,
+               }
+    return render(request, 'signup.html', context)
