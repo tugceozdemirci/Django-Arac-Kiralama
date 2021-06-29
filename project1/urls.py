@@ -25,6 +25,7 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('car/', include('car.urls')),
     path('admin/', admin.site.urls),
+    path('user/', include('user.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
     path('hakkimizda/', views.hakkimizda, name='hakkimizda'),
