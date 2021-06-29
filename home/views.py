@@ -155,7 +155,8 @@ def signup_view(request):
 
     form = SignUpForm()
     category = Category.objects.all()
-    context = {'category': category,
-               'form': form,
-               }
+    context = {
+        'category': category,
+        'form': form,
+    }
     return render(request, 'signup.html', context)

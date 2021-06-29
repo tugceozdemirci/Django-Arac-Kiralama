@@ -19,7 +19,7 @@
                                 <h2>Kayıtlı Hesabınız Var mı?</h2>
                                 <p>On binlerce misafirimiz strese ve masrafa girmeden Yolcu360.com’a girdi ve
                                     aradığı ideal aracı en uygun fiyat garantisi ile Yolcu360’da buldu.</p>
-                                <a href="#" class="btn_3">Giriş Yapın</a>
+                                <a href="/login" class="btn_3">Giriş Yapın</a>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                                         </div>
                                     {% endfor %}
                                 {% endif %}
-                                <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                                <form method="post">
                                     {% csrf_token %}
                                     {% for field in form %}
                                         <p>
@@ -49,7 +49,8 @@
                                             {% endfor %}
                                         </p>
                                     {% endfor %}
-                                    <button type="submit" class="btn hvr-hover">Üye ol</button>
+                                    <button type="submit" class="btn hvr-hover">Üye ol
+                                    <a href="/home"></a></button>
                                 </form>
                             </div>
                         </div>

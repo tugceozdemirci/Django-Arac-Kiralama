@@ -23,6 +23,13 @@
                      <div class="blog_details">
                         <div class="section-top-border">
                             <div class="progress-table-wrap">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
                                 <h4>Kullanıcı Bilgilerim</h4>
                                 <div class="progress-table">
                                     <div class="table-head">
@@ -40,6 +47,9 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="button-group-area mt-40">
+                             <a href="#" class="genric-btn warning e-large">Extra Large</a>
+                         </div>
                      </div>
                   </div>
                 </div>

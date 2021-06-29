@@ -1,6 +1,4 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-
 
 # Create your views here.
 from car.models import Category
@@ -16,3 +14,5 @@ def index(request):
         'profile': profile,
     }
     return render(request, 'user_profile.html', context)
+
+
