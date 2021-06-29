@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from car.models import Car, Category, Images
-from home.models import Setting, ContactFormu, ContactFormMessage
+from home.models import Setting, ContactFormu, ContactFormMessage, UserProfile
 from home.forms import SearchForm, SignUpForm
 
 
