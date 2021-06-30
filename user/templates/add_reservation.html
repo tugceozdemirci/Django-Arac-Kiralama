@@ -10,31 +10,63 @@
 {% block header %}{% include "header.html" %}{% endblock %}
 
 {% block content %}
-    <section class="blog_area single-post-area section-padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-4">
-                  <div class="blog_left_sidebar">
-                      {% include "user_panel.html" %}
-                  </div>
-               </div>
-                <div class="col-lg-8 posts-list">
-                  <div class="single-post">
-                     <div class="blog_details">
-                        <div class="section-top-border">
-                            <div class="progress-table-wrap">
-                                <h4>Rezervasyon Yap</h4>
-                                <div class="progress-table">
-
-
-                                </div>
+          <!--================Cart Area =================-->
+      <section class="cart_area section_padding">
+        <div class="container">
+          <div class="cart_inner">
+              <h3 class="mb-30">Rezervasyon Oluştur</h3>
+                <div class="section-top-border">
+					<div class="row">
+						<div class="col-lg-8 col-md-8">
+							<form name="reservation" action="/car/addreservation/{{ car.id }}" method="post" role="form" class="contactForm">
+                                {% csrf_token %}
+								<div class="mt-10">
+									<input type="text" name="name" value="{{profile.user.first_name }} {{ profile.user.last_name }}" class="single-input">
+								</div>
+								<div class="mt-10">
+									<input type="text" name="email" value="{{profile.user.email }}" placeholder="Email" class="single-input">
+								</div>
+								<div class="mt-10">
+									<input type="text" name="phone" placeholder="Telefon" class="single-input">
+								</div>
+								<div class="mt-10">
+									<input type="text" name="location"  placeholder="Konum" class="single-input">
+								</div>
+                                <div class="mt-10">
+									<input type="date" name="chekin"  placeholder="Alış Tarihi" class="single-input">
+								</div>
+								<div class="mt-10">
+									<input type="date" name="chekout" placeholder="İade Tarihi"	class="single-input-primary">
+								</div>
+								<div class="mt-10">
+									<input type="text" name="price" value=" Günlük Fiyatı: {{ car.price }}" placeholder="Günlük Fiyat" class="single-input-accent">
+								</div>
+                                <div class="mt-10">
+									<input type="number" name="days"  placeholder="Gün Sayısı" value="{{  }}" class="single-input">
+								</div>
+								<div class="mt-20"></div>
+                                <div class="mt-20"></div>
+							</form>
+						</div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="d-flex">
+                                <img src="{{ car.image.url }}" alt="" style="height: 400px"/>
                             </div>
                         </div>
-                     </div>
-                  </div>
+                    </div>
+                    <div class="bottom_button">
+                        {% if user.id is not None %}
+                            <a class="btn_1" href="/user/reservation">Rezervasyon Yap</a>
+                        {% else %}
+                            <a href="/login/" >Rezervasyon İçin Giriş Yapınız!</a>
+                        {% endif %}
+
+                    </div>
                 </div>
             </div>
-         </div>
-    </section>
+          </div>
+        </div>
+      </section>
+
 
 {% endblock %}

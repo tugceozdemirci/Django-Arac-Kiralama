@@ -21,6 +21,7 @@ def index(request):
     }
     return render(request, 'user_profile.html', context)
 
+
 @login_required(login_url='/login')
 def user_update(request):
     if request.method == 'POST':
@@ -99,11 +100,10 @@ def add_reservation(request, id):
     profile = UserProfile.objects.get(user_id=current_user.id)
     category = Category.objects.all()
     reservation = Reservation.objects.filter(user_id=current_user.id)
-    context = {'category': category,
-               'reservation': reservation,
-               'profile': profile,
-               'car': car,
-               }
+    context = {
+        'category': category,
+        'reservation': reservation,
+        'profile': profile,
+        'car': car,
+    }
     return render(request, 'add_reservation.html', context)
-
-
