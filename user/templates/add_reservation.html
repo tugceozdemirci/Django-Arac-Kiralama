@@ -1,0 +1,40 @@
+{% extends "homebase.html" %}
+
+{% block title %}{{setting.title }}{% endblock %}
+{% block keywords %}{{setting.keywords }}{% endblock %}
+{% block description %}{{setting.description }}{% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+{% block header %}{% include "header.html" %}{% endblock %}
+
+{% block content %}
+    <section class="blog_area single-post-area section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4">
+                  <div class="blog_left_sidebar">
+                      {% include "user_panel.html" %}
+                  </div>
+               </div>
+                <div class="col-lg-8 posts-list">
+                  <div class="single-post">
+                     <div class="blog_details">
+                        <div class="section-top-border">
+                            <div class="progress-table-wrap">
+                                <h4>Rezervasyon Yap</h4>
+                                <div class="progress-table">
+
+
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+            </div>
+         </div>
+    </section>
+
+{% endblock %}

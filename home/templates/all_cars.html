@@ -10,21 +10,6 @@
 {% block header %}{% include "header.html" %}{% endblock %}
 
 {% block content %}
-        <div class="slider-area ">
-            <div class="single-slider slider-height2 d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="hero-cap text-center">
-                                <h2>Arama Sonuçları</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Hero Area End-->
-        <!-- Latest Products Start -->
         <section class="popular-items latest-padding">
             <div class="container">
                 <div class="row product-btn justify-content-between mb-40">
@@ -49,19 +34,20 @@
                     <!-- card one -->
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="row">
-                            {% for rs in cars %}
+                            {% for rs in allcar %}
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                                 <div class="single-popular-items mb-50 text-center">
                                     <div class="popular-img">
-                                        <img src="{{ rs.image.url }}" alt="">
+                                        <img src="{{  rs.image.url  }}" height="200 px" alt="">
                                         <div class="img-cap">
-                                            <span>Rezervasyon yap</span>
+                                            <span><a href="/user/addreservation/{{ rs.id }}">Rezervasyon yap</a></span>
                                         </div>
                                         <div class="favorit-items">
                                             <span class="flaticon-heart"></span>
                                         </div>
                                     </div>
                                     <div class="popular-caption">
+
                                         <h3><a href="/car/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></h3>
                                         <span>
                                             <div class="hero__btn">

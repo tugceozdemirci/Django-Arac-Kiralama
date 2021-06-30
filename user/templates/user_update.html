@@ -21,7 +21,6 @@
                 <div class="col-lg-8 posts-list">
                   <div class="single-post">
                      <div class="blog_details">
-                     <h4>Kullanıcı Bilgilerim</h4>
                         <div class="section-top-border">
                             <div class="progress-table-wrap">
                                 {% if messages %}
@@ -31,27 +30,20 @@
                                         </div>
                                     {% endfor %}
                                 {% endif %}
+                                <h4>Kullanıcı Bilgilerim</h4>
                                 <div class="progress-table">
-                                    <div class="table-head">
-                                        <div class="serial">#</div>
-                                        <div class="country">Ad Soyad</div>
-                                        <div class="visit">Adres</div>
-                                        <div class="percentage">Şehir</div>
-                                    </div>
-                                    <div class="table-row">
-                                        <div class="serial"> <img src="{{ profile.image.url }}" style="width: 60px" alt=""></div>
-                                        <div class="country">{{ profile.user_name }}</div>
-                                        <div class="visit">{{ profile.address}}</div>
-                                        <div class="percentage">{{ profile.city}}</div>
-                                    </div>
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <fieldset  class="form-group">
+                                            {{ user_form.as_p }}
+                                            {{ profile_form.as_p }}
+                                        </fieldset>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                          <div class="button-group-area mt-40">
-                             <a href="/user/update" class="genric-btn danger e-large">Profili Güncelle</a>
-                         </div>
-                         <div class="button-group-area mt-40">
-                             <a href="/user/password" class="genric-btn danger e-large">Şifreni Değiştir</a>
+                             <a href="/user" class="genric-btn danger e-large">Güncelle</a>
                          </div>
                      </div>
                   </div>

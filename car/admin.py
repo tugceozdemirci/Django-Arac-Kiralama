@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
-from car.models import Category, Car, Images
+from car.models import Category, Car, Images, Reservation
 
 
 class CarImageInline(admin.TabularInline):
@@ -65,8 +65,14 @@ class CategoryAdmin2(DraggableMPTTAdmin):
     related_products_cumulative_count.short_description = 'Related products (in tree)'
 
 
+class ReservationAdmin(admin.ModelAdmin):
+    list_display = ['car', 'user', 'checkin', 'checkout', 'days', 'price', 'total', 'status']
+    list_filter = ['user']
+
+
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Car, CarAdmin)
 admin.site.register(Images)
+admin.site.register(Reservation, ReservationAdmin)
 
 

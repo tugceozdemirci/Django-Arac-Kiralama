@@ -1,0 +1,89 @@
+{% extends "homebase.html" %}
+
+{% block title %}{{setting.title }}{% endblock %}
+{% block keywords %}{{setting.keywords }}{% endblock %}
+{% block description %}{{setting.description }}{% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+{% block header %}{% include "header.html" %}{% endblock %}
+
+{% block content %}
+    <section class="blog_area single-post-area section-padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4">
+                  <div class="blog_left_sidebar">
+                      {% include "user_panel.html" %}
+                  </div>
+               </div>
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post">
+                        <div class="blog_details">
+                        <h4>Rezervasyonlarım</h4>
+                            <div class="section-top-border">
+                                <div class="progress-table-wrap">
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-lx-4">
+                                                <div class="single_confirmation_details">
+                                                    <table class="table table-inbox">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="text-left"># </th>
+                                                            <th class="text-left">Araç </th>
+                                                            <th class="text-left">Location </th>
+                                                            <th class="text-left">Status </th>
+                                                            <th class="text-left">Checkin </th>
+                                                            <th class="text-left">Checkout </th>
+                                                            <th class="text-left">Days </th>
+                                                            <th class="text-left">Price </th>
+                                                            <th class="text-left">Total </th>
+                                                            <th class="text-left">Delete </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for rs in reservation %}
+                                                                <tr>
+                                                                    <td class="text-center">{{ rs.user }}</td>
+                                                                    <td class="text-left">
+                                                                        <a href="/car/{{ rs.car_id }}/{{ rs.car.slug }}">
+                                                                            <strong>{{ rs.car.title }} </strong>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="text-left">{{ rs.location }}</td>
+                                                                    <td class="text-left">{{ rs.status }}</td>
+                                                                    <td class="text-center">{{ rs.checkin }}</td>
+                                                                    <td class="text-center">{{ rs.checkout }}</td>
+                                                                    <td class="text-center">{{ rs.days }}</td>
+                                                                    <td class="text-center">{{ rs.price }}</td>
+                                                                    <td class="text-center">{{ rs.total }}</td>
+                                                                    <td class="text-left"><a class="genric-btn danger small" href="/user/deletereservation/{{ rs.id }}" onclick="return confirm('Will be Delete ! Are You Sure? ')">Delete </a> </td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="button-group-area mt-40">
+                                    <a href="/allcars" class="genric-btn danger e-large">Rezervasyon Ekle</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </section>
+{% endblock %}
