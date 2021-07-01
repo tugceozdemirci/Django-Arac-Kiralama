@@ -20,10 +20,11 @@ class UserUpdateForm(UserChangeForm):
 
 CITY = [
     ('Istanbul', 'Istanbul'),
+    ('Ankara', 'Ankara'),
+    ('Tekirdağ', 'Tekirdağ'),
 ]
 
 
-# Profile update form allows users to update image
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile

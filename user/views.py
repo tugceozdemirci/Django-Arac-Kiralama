@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from car.models import Category, Reservation, Car
+from car.models import Category, Car, Reservation
 from home.models import UserProfile
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
@@ -30,7 +30,7 @@ def user_update(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, 'Hesabınız Başarıya Güncellendi!')
+            messages.success(request, 'Hesabınız Başarıyla Güncellendi!')
             return redirect('/user')
     else:
         category = Category.objects.all()
@@ -71,7 +71,7 @@ def change_password(request):
 
 
 @login_required(login_url='/login')
-def reservation(request):
+def reservations(request):
     category = Category.objects.all()
     current_user = request.user
     profile = UserProfile.objects.get(user_id=current_user.id)
@@ -89,8 +89,8 @@ def udelete_reservation(request, id):
     Car.objects.get(pk=id)
     current_user = request.user
     Reservation.objects.filter(id=id, user_id=current_user.id).delete()
-    messages.success(request, 'Rezervasyonunuz Silindi.')
-    return HttpResponseRedirect('/user/reservation')
+    messages.success(request, 'Rezervasyonunuz  Başarıyla Silindi.')
+    return HttpResponseRedirect('/user/reservations')
 
 
 @login_required(login_url='/login')
@@ -107,3 +107,6 @@ def uadd_reservation(request, id):
         'car': car,
     }
     return render(request, 'add_reservation.html', context)
+
+
+

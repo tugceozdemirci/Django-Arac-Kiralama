@@ -7,6 +7,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 
+
 class Category(MPTTModel):
     STATUS = {
         ('True', 'Evet'),
@@ -105,7 +106,6 @@ class Reservation(models.Model):
     checkout = models.DateField(null=True)
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     ip = models.CharField(blank=True, max_length=20)
-    slug = models.SlugField()
     note = models.CharField(blank=True, max_length=100)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -115,7 +115,7 @@ class Reservation(models.Model):
 
     @property
     def total(self):
-        return (self.days * self.car.price)
+        return self.days * self.car.price
 
     @property
     def price(self):

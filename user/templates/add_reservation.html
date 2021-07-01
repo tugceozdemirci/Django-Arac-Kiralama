@@ -23,42 +23,45 @@
                                     <img src="{{ car.image.url }}" alt="" style="height: 400px"/>
                                 </div>
                             </div>
-							<form name="reservation" action="/car/addreservation/{{ car.id }}" method="post" role="form" class="contactForm">
+							<form action="/car/add/{{ car.id }}" method="post" role="form">
                                 {% csrf_token %}
 								<div class="mt-10">
-									<input type="text" name="name" value="{{profile.user.first_name }} {{ profile.user.last_name }}" class="single-input">
-								</div>
-								<div class="mt-10">
-									<input type="text" name="email" value="{{profile.user.email }}" placeholder="Email" class="single-input">
-								</div>
-								<div class="mt-10">
-									<input type="text" name="phone" placeholder="Telefon" class="single-input">
-								</div>
-								<div class="mt-10">
-									<input type="text" name="location"  placeholder="Konum" class="single-input">
+									<input type="text" name="user" value="{{user}}" class="single-input">
 								</div>
                                 <div class="mt-10">
-									<input type="date" name="chekin"  placeholder="Alış Tarihi" class="single-input">
+									<input type="text" name="name" value="{{user.first_name }} {{ user.last_name }}" class="single-input">
 								</div>
 								<div class="mt-10">
-									<input type="date" name="chekout" placeholder="İade Tarihi"	class="single-input-primary">
+									<input type="text" name="email" value="{{ user.email }}" placeholder="Email" class="single-input">
+								</div>
+								<div class="mt-10">
+									<input type="text" name="phone" placeholder="Telefon"  class="single-input">
+								</div>
+								<div class="mt-10">
+									<input type="text" name="location" placeholder="Konum"  class="single-input">
 								</div>
                                 <div class="mt-10">
-									<input type="number" name="days" placeholder="Gün Sayısı"	class="single-input-primary">
+									<input type="date" name="checkin"  placeholder="Alış Tarihi"  class="single-input-primary">
+								</div>
+								<div class="mt-10">
+									<input type="date" name="checkout" placeholder="İade Tarihi"	 class="single-input-primary">
+								</div>
+                                <div class="mt-10">
+									<input type="number" name="days" placeholder="Gün Sayısı"	 class="single-input-primary">
 								</div>
 								<div class="mt-10">
 									<input type="text" name="price" value=" Günlük Fiyatı: {{ car.price }}" placeholder="Günlük Fiyat" class="single-input-accent">
 								</div>
 								<div class="mt-20"></div>
                                 <div class="mt-20"></div>
+                                <div class="bottom_button">
+                                    {% if user.id is not None %}
+                                        <button class="btn hero-btn" type="submit">Rezervasyon Yap</button>
+                                    {% else %}
+                                        <a href="/login/" >Rezervasyon İçin Giriş Yapınız!</a>
+                                    {% endif %}
+                                </div>
 							</form>
-                            <div class="bottom_button">
-                                {% if user.id is not None %}
-                                    <a class="btn_1" href="/car/addreservation/{{ car.id }}">Rezervasyon Yap</a>
-                                {% else %}
-                                    <a href="/login/" >Rezervasyon İçin Giriş Yapınız!</a>
-                                {% endif %}
-                            </div>
                         </div>
                     </div>
                 </div>
