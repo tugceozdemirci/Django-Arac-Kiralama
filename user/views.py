@@ -85,7 +85,7 @@ def reservation(request):
 
 
 @login_required(login_url='/login')
-def delete_reservation(request, id):
+def udelete_reservation(request, id):
     Car.objects.get(pk=id)
     current_user = request.user
     Reservation.objects.filter(id=id, user_id=current_user.id).delete()
@@ -94,7 +94,7 @@ def delete_reservation(request, id):
 
 
 @login_required(login_url='/login')
-def add_reservation(request, id):
+def uadd_reservation(request, id):
     car = Car.objects.get(pk=id)
     current_user = request.user
     profile = UserProfile.objects.get(user_id=current_user.id)

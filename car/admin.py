@@ -66,7 +66,7 @@ class CategoryAdmin2(DraggableMPTTAdmin):
 
 
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ['car', 'user', 'checkin', 'checkout', 'days', 'price', 'total', 'status']
+    list_display = ['car', 'user', 'checkin', 'checkout', 'days', 'price', 'total']
     list_filter = ['user']
 
 

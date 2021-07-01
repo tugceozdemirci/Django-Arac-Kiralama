@@ -18,6 +18,11 @@
                 <div class="section-top-border">
 					<div class="row">
 						<div class="col-lg-8 col-md-8">
+                            <div class="col-lg-4 col-md-4">
+                                <div class="d-flex">
+                                    <img src="{{ car.image.url }}" alt="" style="height: 400px"/>
+                                </div>
+                            </div>
 							<form name="reservation" action="/car/addreservation/{{ car.id }}" method="post" role="form" class="contactForm">
                                 {% csrf_token %}
 								<div class="mt-10">
@@ -38,29 +43,23 @@
 								<div class="mt-10">
 									<input type="date" name="chekout" placeholder="İade Tarihi"	class="single-input-primary">
 								</div>
+                                <div class="mt-10">
+									<input type="number" name="days" placeholder="Gün Sayısı"	class="single-input-primary">
+								</div>
 								<div class="mt-10">
 									<input type="text" name="price" value=" Günlük Fiyatı: {{ car.price }}" placeholder="Günlük Fiyat" class="single-input-accent">
-								</div>
-                                <div class="mt-10">
-									<input type="number" name="days"  placeholder="Gün Sayısı" value="{{  }}" class="single-input">
 								</div>
 								<div class="mt-20"></div>
                                 <div class="mt-20"></div>
 							</form>
-						</div>
-                        <div class="col-lg-4 col-md-4">
-                            <div class="d-flex">
-                                <img src="{{ car.image.url }}" alt="" style="height: 400px"/>
+                            <div class="bottom_button">
+                                {% if user.id is not None %}
+                                    <a class="btn_1" href="/car/addreservation/{{ car.id }}">Rezervasyon Yap</a>
+                                {% else %}
+                                    <a href="/login/" >Rezervasyon İçin Giriş Yapınız!</a>
+                                {% endif %}
                             </div>
                         </div>
-                    </div>
-                    <div class="bottom_button">
-                        {% if user.id is not None %}
-                            <a class="btn_1" href="/user/reservation">Rezervasyon Yap</a>
-                        {% else %}
-                            <a href="/login/" >Rezervasyon İçin Giriş Yapınız!</a>
-                        {% endif %}
-
                     </div>
                 </div>
             </div>

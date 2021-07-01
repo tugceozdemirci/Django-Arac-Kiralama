@@ -115,7 +115,7 @@ class Reservation(models.Model):
 
     @property
     def total(self):
-        return self.days * self.car.price
+        return (self.days * self.car.price)
 
     @property
     def price(self):

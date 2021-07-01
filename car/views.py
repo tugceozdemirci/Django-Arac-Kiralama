@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 
 from car.models import ReservationForm, Reservation
@@ -8,7 +9,8 @@ def index(request):
     return HttpResponse("Car Page")
 
 
-def add_reservation(request, id):
+@login_required(login_url="/login")
+def addreservation(request, id):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
